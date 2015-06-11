@@ -4,15 +4,28 @@
 ## A Ben Rogers Joint ##
 ########################
 
-####################################################
-## Preamble: This file will allow for the read in ##
-## of the two data files for the project.         ##
-####################################################
+#########################################################
+## Preamble: This file will allow for the read in      ##
+## and clean up of the two data files for the project. ##
+#########################################################
 
 
 getwd()
 
 library(foreign)
 
-females15 <- read.dta("/Users/bjr/Desktop/School/WSFDat/females15.dta")
-males15 <- read.dta("/Users/bjr/Desktop/School/WSFDat/males15.dta")
+fem <- read.dta("/Users/bjr/Desktop/School/WSFDat/females15.dta")
+hom <- read.dta("/Users/bjr/Desktop/School/WSFDat/males15.dta")
+
+
+## Begin cleaning up the data
+
+head(females15)
+data.frame("fem" = colnames(fem)[1:114], "hom" = colnames(hom))
+
+
+################
+## vari <- 5  ##
+## fem[,vari] ##
+## hom[,vari] ##
+################

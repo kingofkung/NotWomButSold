@@ -30,24 +30,45 @@ colnames(femkey)
 
 
 
-##Take our recoding variable from
 
-recimp <- function(recodeimp ){
+##' Import recodes
+##'
+##' take our recodes from the .csv  variable key and turn them into usable lists
+##' @title recimp
+##' @param recodeimp the imported text from the data file
+##' @return a list with the original level in the name and the recoded name in the file
+##' @author Ben Rogers
+recimp <- function(recodeimp){
     recodr <- recodeimp
     recodr <- gsub("\"", "\"", recodr) ##Transform imported recode from having \" symbols to having just " symbols
+    recodr <- gsub("\'", "\'", recodr) ## Do the same thing, but using ' instead of "
     recodr <- eval(parse(text = recodr)) ## Evaluate the imported recode as though it had been written in the R file rather than a .csv
 }
 
-
+##' Recode Just one factor variable level
+##'
+##' @title recimp
+##' @param col a name of a variable level we would like to import in the format "name" = "newlevel"
+##' @param data the data we would like to recode
+##' @return the data with a recoded level
+##' @author Benjamin Rogers
 recodefunc <- function(col, data = fem$WhyJoin){
-    levels(data) <- c(levels(data), col) ## Add data from col to the factor  levels
+    levels(data) <- c(levels(data), col) ## Add data from col to the factor levels
     data[data %in% names(col)] <- col ## Change
+    data <- factor(data) ## Remove the old level
     return(data)
 }
 
 
-fem$WhyJoin <- factor(fem$WhyJoin) ##make our variable a factor
+## All below should be placed into a loop.
 
-dataRecode <- recimp(recodeimp = femkey[3, "RespOpts"])
-for(i in 1:length(dataRecode)) fem$WhyJoin <- recodefunc(col = dataRecode[i], data = fem$WhyJoin)
+davar <- fem$WhyJoin ## Put our variable somewhere we can change it
+davar <- factor(davar) ##make our variable a factor
 
+dataRecode <- recimp(recodeimp = femkey[3, "RespOpts"]) ## import our recode using new function (generalize)
+for(i in 1:length(dataRecode)) davar <- recodefunc(col = dataRecode[i], data = davar) ##Using now evaluated recode list, recode davar
+
+
+
+fem$WhyJoin <- davar ## and return transformed variable to its original name
+fem$WhyJoin

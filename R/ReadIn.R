@@ -24,8 +24,10 @@ hom <- read.dta("/Users/bjr/Desktop/School/WSFDat/males15.dta")
 
 head(fem)
 data.frame("fem" = colnames(fem)[1:114], "hom" = colnames(hom))
-View(hom)
-View(fem)
+###############
+## View(hom) ##
+## View(fem) ##
+###############
 
 questno <- 4
 summary(factor(fem[,"A6_Q4"]))
@@ -53,11 +55,32 @@ homkey <- read.csv("/Users/bjr/Desktop/School/WSFDat/homkey.csv", header = TRUE)
 ###################################################################
 
 
-femkey$varOrig
+
 femkey$VarToMatch <- gsub("A\\d+\\_", "", femkey$varOrig)
 homkey$VarToMatch <- gsub("A\\d+\\_", "", homkey$varOrig)
 ## We'll need to create a coding to make this work
-femkey$sampleWord
-homkey$sampleWord
+femkey$sampleWord <- gsub(" ","",femkey$Question)
+homkey$sampleWord <- gsub(" ","",homkey$Question)
 
-femkey$varOrig[ match(homkey$VarToMatch, femkey$VarToMatch)]
+femkey$sampleWord <- gsub("\\d\\d\\D","",femkey$sampleWord)
+homkey$sampleWord <- gsub("\\d\\d\\D","",homkey$sampleWord)
+
+femkey$sampleWord <- gsub("\\d\\D","",femkey$sampleWord)
+homkey$sampleWord <- gsub("\\d\\D","",homkey$sampleWord)
+
+
+femkey$sampleWord <- substr(femkey$sampleWord, 1, 55)
+homkey$sampleWord <- substr(homkey$sampleWord, 1, 55)
+
+femkey$VarToMatch <- paste0(femkey$VarToMatch, femkey$sampleWord)
+homkey$VarToMatch <- paste0(homkey$VarToMatch, homkey$sampleWord)
+
+
+homkey$varNew <- femkey[match(homkey$VarToMatch, femkey$VarToMatch), "varNew"]
+
+homkey$VarToMatch <- NULL
+homkey$sampleWord <- NULL
+
+##Eventually we'll have to do some manual matching on the homkey, but for now, this is better
+
+write.csv(homkey, "/Users/bjr/Desktop/School/WSFDat/homkeytitled.csv")

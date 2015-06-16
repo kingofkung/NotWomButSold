@@ -4,10 +4,12 @@
 ## A Ben Rogers Joint ##
 ########################
 
-#########################################################
-## Preamble: This file will allow for the read in      ##
-## and clean up of the two data files for the project. ##
-#########################################################
+
+########################################################
+## Preamble: This file will create  the read in       ##
+## files for the two data files for the project.      ##
+########################################################
+
 
 
 getwd()
@@ -84,3 +86,5 @@ homkey$sampleWord <- NULL
 ##Eventually we'll have to do some manual matching on the homkey, but for now, this is better
 
 write.csv(homkey, "/Users/bjr/Desktop/School/WSFDat/homkeytitled.csv")
+
+

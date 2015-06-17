@@ -61,14 +61,20 @@ recodefunc <- function(col, data = fem$WhyJoin){
 
 
 ## All below should be placed into a loop.
+vartitle <- "ThirdGender"
+davar <- fem[, vartitle] ## Put our variable somewhere we can change it
+summary(factor(davar))
 
-davar <- fem$WhyJoin ## Put our variable somewhere we can change it
+savvar <- davar ## Save the original for comparison (can delete once verified)
+
 davar <- factor(davar) ##make our variable a factor
 
-dataRecode <- recimp(recodeimp = femkey[3, "RespOpts"]) ## import our recode using new function (generalize)
+dataRecode <- recimp(recodeimp = femkey[femkey$varNew %in% vartitle, "RespOpts"]) ## import our recode using new function (generalize)
 for(i in 1:length(dataRecode)) davar <- recodefunc(col = dataRecode[i], data = davar) ##Using now evaluated recode list, recode davar
 
 
 
-fem$WhyJoin <- davar ## and return transformed variable to its original name
-fem$WhyJoin
+fem[,vartitle] <- davar ## and return transformed variable to its original name
+fem[,vartitle]
+
+summary(davar)

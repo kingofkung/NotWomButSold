@@ -60,21 +60,32 @@ recodefunc <- function(col, data = fem$WhyJoin){
 }
 
 
+## Temporarily moved vartitle up for ease of testing
+vartitle <- "OfficerStatus"
+
+
+colnames(femkey)
+femkey$varNew[!is.na(femkey$RespOpts)]
+
 ## All below should be placed into a loop.
-vartitle <- "ThirdGender"
-davar <- fem[, vartitle] ## Put our variable somewhere we can change it
-summary(factor(davar))
+for(j in femkey$varNew[!is.na(femkey$RespOpts)]){
 
-savvar <- davar ## Save the original for comparison (can delete once verified)
+    vartitle <- j
 
-davar <- factor(davar) ##make our variable a factor
+    davar <- fem[, vartitle] ## Put our variable somewhere we can change it
+    ##summary(factor(davar))
 
-dataRecode <- recimp(recodeimp = femkey[femkey$varNew %in% vartitle, "RespOpts"]) ## import our recode using new function (generalize)
-for(i in 1:length(dataRecode)) davar <- recodefunc(col = dataRecode[i], data = davar) ##Using now evaluated recode list, recode davar
+    ##savvar <- davar ## Save the original for comparison (can delete once verified)
+    davar <- factor(davar) ##make our variable a factor
+    dataRecode <- recimp(recodeimp = femkey[femkey$varNew %in% vartitle, "RespOpts"]) ## import our recode using new function
+    for(i in 1:length(dataRecode)) davar <- recodefunc(col = dataRecode[i], data = davar) ##Using now evaluated recode list, recode davar
+    fem[,vartitle] <- davar ## and return transformed variable to its original name
+
+}
 
 
+write.csv(fem, '/Users/bjr/Desktop/School/WSFDat/femRec.csv')
 
-fem[,vartitle] <- davar ## and return transformed variable to its original name
 fem[,vartitle]
-
-summary(davar)
+print(vartitle)
+data.frame(summary(davar))

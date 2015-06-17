@@ -85,6 +85,6 @@ homkey$sampleWord <- NULL
 
 ##Eventually we'll have to do some manual matching on the homkey, but for now, this is better
 
-write.csv(homkey, "/Users/bjr/Desktop/School/WSFDat/homkeytitled.csv")
+##write.csv(homkey, "/Users/bjr/Desktop/School/WSFDat/homkeytitled.csv")
 
 

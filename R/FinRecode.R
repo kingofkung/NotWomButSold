@@ -17,7 +17,9 @@ dat <- read.csv("/Users/bjr/Desktop/School/WSFDat/mergeRec.csv")
 colnames(dat)
 
 homdat <- read.csv("/Users/bjr/Desktop/School/WSFDat/homRec.csv")
+colnames(homdat)
 
+femdat <- read.csv("/Users/bjr/Desktop/School/WSFDat/femRec.csv")
 
 
 ## A couple of analytic recodes
@@ -44,6 +46,15 @@ homdat$OpposeNum[ homdat$OpposeNum == "Oppose"] <- "1"
 homdat$OpposeNum[ homdat$OpposeNum == "DontOppose"] <- "1"
 
 
+femdat$OpposeBin <- femdat$WhyOpposeFemaleService
+levels(femdat$OpposeBin) <- c(levels(femdat$OpposeBin), "Oppose")
+femdat$OpposeBin[!femdat$OpposeBin %in% "DontOppose"] <- "Oppose"
+femdat$OpposeBin <- factor(femdat$OpposeBin)
+
+femdat$OpposeNum <- femdat$OpposeBin
+levels(femdat$OpposeNum) <- c(levels(femdat$OpposeNum), "0", "1")
+femdat$OpposeNum[ femdat$OpposeNum == "Oppose"] <- "1"
+femdat$OpposeNum[ femdat$OpposeNum == "DontOppose"] <- "1"
 
 
 

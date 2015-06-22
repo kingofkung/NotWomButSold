@@ -10,25 +10,32 @@
 ###############################################
 rm(list = ls())
 
+##########################################################
+## Temporarily moved vartitle up for ease of testing    ##
+##########################################################
+vartitle <-"AnyComments"
+
 library(foreign)
 
 fem <- read.dta("/Users/bjr/Desktop/School/WSFDat/females15.dta")
 hom <- read.dta("/Users/bjr/Desktop/School/WSFDat/males15.dta")
 
 femkey <- read.csv("/Users/bjr/Desktop/School/WSFDat/femkey.csv", header = TRUE, stringsAsFactors = F)
-homkey <- read.csv("/Users/bjr/Desktop/School/WSFDat/homkeytitled.csv", header = TRUE)
+homkey <- read.csv("/Users/bjr/Desktop/School/WSFDat/homkey.csv", header = TRUE, stringsAsFactors = F)
 
 ####################################################
 ## Figure out a way to create codings in our      ##
 ## key file, then enact those recodes in our data.##
 ####################################################
 
-colnames(fem) <- femkey$varNew
 
-colnames(femkey)
+colnames(homkey)
 ##Figure out way to easily recode using the format below
+dat <- fem
+key <- femkey
+finfile <- '/Users/bjr/Desktop/School/WSFDat/femRec.csv'
 
-
+colnames(dat) <- key$varNew
 
 
 ##' Import recodes
@@ -60,32 +67,43 @@ recodefunc <- function(col, data = fem$WhyJoin){
 }
 
 
-## Temporarily moved vartitle up for ease of testing
-vartitle <- "OfficerStatus"
 
 
 colnames(femkey)
 femkey$varNew[!is.na(femkey$RespOpts)]
 
 ## All below should be placed into a loop.
-for(j in femkey$varNew[!is.na(femkey$RespOpts)]){
+
+
+
+for(j in key$varNew[!is.na(key$RespOpts)]){
 
     vartitle <- j
 
-    davar <- fem[, vartitle] ## Put our variable somewhere we can change it
-    ##summary(factor(davar))
+
+
+    davar <- dat[, vartitle] ## Put our variable somewhere we can change it
+    summary(factor(davar))
 
     ##savvar <- davar ## Save the original for comparison (can delete once verified)
     davar <- factor(davar) ##make our variable a factor
-    dataRecode <- recimp(recodeimp = femkey[femkey$varNew %in% vartitle, "RespOpts"]) ## import our recode using new function
+    dataRecode <- recimp(recodeimp = key[key$varNew %in% vartitle, "RespOpts"]) ## import our recode using new function
     for(i in 1:length(dataRecode)) davar <- recodefunc(col = dataRecode[i], data = davar) ##Using now evaluated recode list, recode davar
-    fem[,vartitle] <- davar ## and return transformed variable to its original name
+    dat[,vartitle] <- davar ## and return transformed variable to its original name
+
+
+
 
 }
 
 
-write.csv(fem, '/Users/bjr/Desktop/School/WSFDat/femRec.csv')
 
-fem[,vartitle]
+
+
+
 print(vartitle)
 data.frame(summary(davar))
+###################################################################
+## Commented until we're ready to begin writing
+ write.csv(dat, finfile) ##
+###################################################################

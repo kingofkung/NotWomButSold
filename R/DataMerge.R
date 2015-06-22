@@ -17,13 +17,15 @@ getwd()
 femdat <- read.csv("/Users/bjr/Desktop/School/WSFDat/femRec.csv")
 homdat <- read.csv("/Users/bjr/Desktop/School/WSFDat/homRec.csv")
 
+##Add Gender ID Variable
+
 femdat$Woman <- 1
 homdat$Woman <- 0
 
-colnames(femdat)
-colnames(homdat)
-
+##Merge all variables of the same name into one big data frame
 bigdat <- femdat[, colnames(femdat)[ colnames(femdat) %in% colnames(homdat)]]
 bigdat <- rbind(bigdat, homdat[, colnames(homdat)[ colnames(homdat) %in% colnames(femdat)] ] )
 
 
+
+write.csv(bigdat, "/Users/bjr/Desktop/School/WSFDat/mergeRec.csv")

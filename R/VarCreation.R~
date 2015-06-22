@@ -1,0 +1,38 @@
+########################
+## Variable Creation  ##
+## Created 6/22/2015  ##
+## A Ben Rogers Joint ##
+########################
+
+
+######################################################
+## Preamble: Created New Variables for the analysis ##
+######################################################
+
+
+library(rockchalk)
+
+############################
+## read in final data set ##
+############################
+
+dat <- read.csv("/Users/bjr/Desktop/School/WSFDat/mergeRec.csv")
+colnames(dat)
+
+
+## A couple of analytic recodes
+## Create Oppose Yes/No Var from WhyOpposeFemaleService
+
+dat$OpposeBin <- dat$WhyOpposeFemaleService
+levels(dat$OpposeBin) <- c(levels(dat$OpposeBin), "Oppose")
+dat$OpposeBin[!dat$OpposeBin %in% "DontOppose"] <- "Oppose"
+dat$OpposeBin <- factor(dat$OpposeBin)
+
+dat$OpposeNum <- dat$OpposeBin
+levels(dat$OpposeNum) <- c(levels(dat$OpposeNum), "0", "1")
+dat$OpposeNum[ dat$OpposeNum == "Oppose"] <- "1"
+dat$OpposeNum[ dat$OpposeNum == "DontOppose"] <- "1"
+
+
+
+pctable(dat$OpposeBin, dat$Woman)

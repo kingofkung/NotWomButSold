@@ -10,6 +10,10 @@
 library(rockchalk)
 library(gmodels)
 
+#############################################################################
+## Remember: Negative == Integrate, Positive == Segregate for coefficients ##
+#############################################################################
+
 CrossTable(dat$OpposeBin, dat$Woman, prop.chisq = F, prop.r = F, prop.t = F)
 
 m1 <- glm(OpposeNum ~ Woman, data = dat, family = binomial)
@@ -54,7 +58,7 @@ m6 <- glm(OpposeNum ~ TreatmentVMaleSoldiers, data = femdat, family = binomial)
 summary(m6)
 m7 <- update(m6, . ~ TreatmentVLocalFemales)
 summary(m7)
-
+## Relevel to worse as reference
 
 pctable(femdat$OpposeBin, femdat$GenderAndLocalFemales)
 pctable(femdat$OpposeBin, femdat$GenderAndLocalMales)
@@ -109,12 +113,15 @@ pctable(dat$OpposeBin, dat$CohesionSexHarrass)
 
 pctable(dat$OpposeBin, dat$sharp)
 
-msharp <- glm(OpposeNum ~ sharp,
-              data = dat)
-
+msharp <- glm(OpposeNum ~ sharp, data = dat)
+summary(msharp)
+outreg(msharp, type = 'html')
 ## ^Point this out^
 
+## Education data ## NOTE: Some of the data appears to be missing:
+##Specifically some women who had pre-high school experience
+pctable(dat$OpposeBin, dat$Education)
 
-
-
+medu <- glm(OpposeNum ~ Education, data = dat)
+summary(medu)
 

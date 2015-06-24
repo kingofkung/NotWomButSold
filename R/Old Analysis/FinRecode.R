@@ -97,3 +97,12 @@ dat$RaceComp <- factor(dat$RaceComp)
 dat$RaceComp <- relevel(dat$RaceComp, ref = "White")
 
 length(dat$RaceComp[dat$RaceComp == "Hispanic" & is.na(dat$RaceComp) == F])
+
+dat$sharp <- gsub('NA', '',
+                  paste0(dat$HarrassTrainingDoneRight,
+                         dat$HarrassTrainingConfusing,
+                         dat$HarrassTrainingInsufficient,
+                         dat$HarrassTrainingCausesFear)
+                  )
+dat$sharp[dat$sharp %in% ""] <- NA
+

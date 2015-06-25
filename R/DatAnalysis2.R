@@ -11,3 +11,9 @@
 
 library(rockchalk)
 library(ggplot2)
+
+head(femdat)
+
+str(femdat)
+
+summary( femdat)

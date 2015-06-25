@@ -1,5 +1,5 @@
 ########################
-## New set of Recodes ##
+## New data cleanup   ##
 ## Created 6/24/2015  ##
 ## A Ben Rogers Joint ##
 ########################
@@ -31,10 +31,12 @@ homkey <- read.csv("/Users/bjr/Desktop/School/WSFDat/homkey.csv", header = TRUE,
 
 
 ## So we have a problem. The read in .xlsx file has had its spaces and parens in the title replaced by periods, while the excel files have had an X added to just about every title name except the first
-data.frame(
-    "Raw" =  head(colnames(femdat)),
-    "Key" =  head(femkey$varOrig)
-)
+##########################################
+## data.frame(                          ##
+##     "Raw" =  head(colnames(femdat)), ##
+##     "Key" =  head(femkey$varOrig)    ##
+## )                                    ##
+##########################################
 
 
 
@@ -54,8 +56,6 @@ femkey$varOrig <- femkeynames
 data.frame( femkey$varOrig,  femkey$varNew)
 
 ##Guarantee that even if the data's out of order, we still get the right label to the right data
-
-
 colnames(femdat) <- femkey$varNew[ match(colnames(femdat), femkey$varOrig)]
 
 
@@ -75,17 +75,19 @@ homkey$varOrig <- homkeynames
 colnames(homdat) <- homkey$varNew[ match(colnames(homdat), homkey$varOrig)]
 
 
-
+## Take from factors with dodgy levels to factors with less dodgy levels
 homdatchar <- lapply(homdat, as.character)
 
 ## The "\\x{00a0} below indicates a unicode character as seen below
 ## recode st <U+00A0> or  \u00a0 is no longer anywhere.
 homdatchar  <- lapply(homdatchar, gsub, pattern = "\\x{00a0}", replacement = "\\ ")
+
+##Get rid of a couple of other patterns I dislike.
 homdatchar <- lapply(homdatchar, gsub, pattern = "\"", replacement = "")
 homdatchar  <- lapply(homdatchar, gsub, pattern = "[/]", replacement = "or")
 
 str(homdatchar)
-homdat <- lapply(homdatchar, factor)
+homdat <- as.data.frame(lapply(homdatchar, factor)) ## Factor everything and turn it into a data frame.
 str(homdat)
 
 
@@ -96,7 +98,18 @@ femdatchar  <- lapply(femdatchar, gsub, pattern = "[/]", replacement = "or")
 
 
 str(femdatchar)
-femdat <- lapply(femdatchar, factor)
+femdat <- as.data.frame(lapply(femdatchar, factor))
 str(femdat)
 
 str(femdat$GenderAndLocalFemales)
+
+head(as.data.frame(femdat))
+
+
+## Write each of these to a .csv file so I don't have to deal with this code a lot more
+
+write.csv(homdat,"/Users/bjr/Desktop/School/WSFDat/homdat.csv", row.names = FALSE)
+write.csv(femdat,"/Users/bjr/Desktop/School/WSFDat/femdat.csv", row.names = FALSE)
+
+
+

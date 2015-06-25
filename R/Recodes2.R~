@@ -11,4 +11,3 @@
 
 femdat <- read.csv("/Users/bjr/Desktop/School/WSFDat/femdat.csv")
 homdat <- read.csv("/Users/bjr/Desktop/School/WSFDat/homdat.csv")
-

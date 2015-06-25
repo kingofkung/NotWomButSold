@@ -20,12 +20,13 @@ head(femdat)
 str(femdat)
 
 dat <- homdat
-varname <- "Bonded"
+varname <- "BirthYear"
+
 
 data.frame(
     'freqs' =
         sort(
-            summary(dat[, varname]),
+            summary(2015 - dat[, varname]),
             decreasing = TRUE
             )
 )

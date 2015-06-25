@@ -106,6 +106,9 @@ str(femdat$GenderAndLocalFemales)
 head(as.data.frame(femdat))
 
 
+
+
+
 ## Write each of these to a .csv file so I don't have to deal with this code a lot more
 
 write.csv(homdat,"/Users/bjr/Desktop/School/WSFDat/homdat.csv", row.names = FALSE)

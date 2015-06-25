@@ -72,6 +72,31 @@ homkeynames <- gsub("\\s", "", homkeynames)
 colnames(homdat) <- homdatnames
 homkey$varOrig <- homkeynames
 
-colnames(homdat) <- homkey$varNew[ match(colnames(homkey), homkey$varOrig)]
+colnames(homdat) <- homkey$varNew[ match(colnames(homdat), homkey$varOrig)]
 
 
+
+homdatchar <- lapply(homdat, as.character)
+
+## The "\\x{00a0} below indicates a unicode character as seen below
+## recode st <U+00A0> or  \u00a0 is no longer anywhere.
+homdatchar  <- lapply(homdatchar, gsub, pattern = "\\x{00a0}", replacement = "\\ ")
+homdatchar <- lapply(homdatchar, gsub, pattern = "\"", replacement = "")
+homdatchar  <- lapply(homdatchar, gsub, pattern = "[/]", replacement = "or")
+
+str(homdatchar)
+homdat <- lapply(homdatchar, factor)
+str(homdat)
+
+
+femdatchar <- lapply(femdat, as.character)
+femdatchar  <- lapply(femdatchar, gsub, pattern = "\\x{00a0}", replacement = "\\ ")
+femdatchar  <- lapply(femdatchar, gsub, pattern = "\"", replacement = "")
+femdatchar  <- lapply(femdatchar, gsub, pattern = "[/]", replacement = "or")
+
+
+str(femdatchar)
+femdat <- lapply(femdatchar, factor)
+str(femdat)
+
+str(femdat$GenderAndLocalFemales)

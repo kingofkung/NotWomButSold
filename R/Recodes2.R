@@ -50,17 +50,55 @@ namaker <- function(vec, toNA = "" ){
 
 namaker(homdat$FemalesAreWhiny)
 
-homdatimp <- lapply(homdat, namaker)
+datimp <- lapply(datcomb, namaker)
 
-homdatimp <- lapply(homdatimp, namaker, toNA = "-")
+datimp <- lapply(datimp, namaker, toNA = "-")
+datcomb <- datimp
 
-homdatimp$HarrassTrainingInsufficient
+##' Get it so I've only got the first word from categories
+##' @title firstword
+##' @param dat a vector of factor or character data
+##' @return the first word from the dat vector
+##' @author Benjamin Rogers
+firstword <- function(dat){
+    testracial <- strsplit(as.character(dat), split = "\\s")
+    output <- sapply(testracial, FUN = function(col) col[[1]])
+    return(output)
+}
 
-table(datcomb$ServedCST)
-table(femdat$ServedCST)
+datcomb$RaceHispanic <- firstword(datcomb$RaceHispanic)
+datcomb$RaceBlack <- firstword(datcomb$RaceBlack)
+datcomb$RaceWhite <- firstword(datcomb$RaceWhite)
+datcomb$RaceAsian <- firstword(datcomb$RaceAsian)
 
-table(datcomb$HarrassTrainingInsufficient)
-table(femdat$HarrassTrainingInsufficient)
-table(homdat$HarrassTrainingInsufficient)
+datcomb$RaceComb <- paste(datcomb$RaceWhite, datcomb$RaceBlack, datcomb$RaceHispanic, datcomb$RaceAsian)
+
+datcomb$RaceComb <- gsub("[,]", "", datcomb$RaceComb)
+## Get rid of NAs. Note the brackets. It'll get rid of any N and any A unless they're bracketed separately. Then it knows they're supposed to be in that order
+datcomb$RaceComb <- gsub("[N][A]", "", datcomb$RaceComb)
+
+## Get blacks, whites, and hispanics on their own.
+datcomb$RaceComb[ grep("Black", datcomb$RaceComb)] <- "Black"
+datcomb$RaceComb[ grep("Hispanic", datcomb$RaceComb)] <- "Hispanic"
+datcomb$RaceComb[ grep("White", datcomb$RaceComb)] <- "White"
+
+## Eliminate unwanted spaces
+datcomb$RaceComb <- gsub("\\s", "", datcomb$RaceComb)
+datcomb$RaceComb[datcomb$RaceComb == ""] <- NA
+datcomb$RaceComb <- factor(datcomb$RaceComb)
 
 
+## Begin working on marital status
+## Recall, getting involved with a civilian vs. getting involved w/a service member is the key distinction
+datcomb$MaritalSimp <- as.character(datcomb$Marital)
+
+
+datcomb$MaritalSimp[grep("civilian", datcomb$MaritalSimp)] <- "Civilian"
+datcomb$MaritalSimp[grep("service", datcomb$MaritalSimp)] <- "Service Member"
+
+
+## Get rid of levels that don't consider civilians or service members
+levels(factor(datcomb$MaritalSimp))
+rmlvls <- c("No Comment", "Never Married", "Widowed")
+datcomb$MaritalSimp[datcomb$MaritalSimp %in% rmlvls] <- NA
+datcomb$MaritalSimp <- factor(datcomb$MaritalSimp)

@@ -97,8 +97,40 @@ datcomb$MaritalSimp[grep("civilian", datcomb$MaritalSimp)] <- "Civilian"
 datcomb$MaritalSimp[grep("service", datcomb$MaritalSimp)] <- "Service Member"
 
 
+
 ## Get rid of levels that don't consider civilians or service members
 levels(factor(datcomb$MaritalSimp))
 rmlvls <- c("No Comment", "Never Married", "Widowed")
 datcomb$MaritalSimp[datcomb$MaritalSimp %in% rmlvls] <- NA
 datcomb$MaritalSimp <- factor(datcomb$MaritalSimp)
+
+
+## Eliminate question marks in ideology question
+
+datcomb$Ideology <- as.character(datcomb$Ideology)
+datcomb$Ideology <- gsub("[?]", "", datcomb$Ideology)
+datcomb$Ideology <- factor(datcomb$Ideology)
+
+## Make a numeric opposition variable
+
+
+levels( datcomb$WhySupportFemaleService)
+
+datcomb$WhySupportFemaleService ==  "I oppose females serving in combat units"
+
+datcomb$NumSupport <- NA
+datcomb$NumSupport[datcomb$WhySupportFemaleService ==  "I oppose females serving in combat units"] <- 0
+datcomb$NumSupport[!datcomb$WhySupportFemaleService ==  "I oppose females serving in combat units"] <- 1
+
+table(datcomb$NumSupport, datcomb$WhySupportFemaleService)
+
+## Relevel some stuff
+levels(datcomb$BathroomQuestion) <- levels(datcomb$BathroomQuestion)[c(1:2, 4, 3)]
+levels(datcomb$ComfortFemales) <- levels(datcomb$ComfortFemales)[c(4,3,1,2)]
+
+##Make this a data.frame
+
+datcomb <- as.data.frame(datcomb)
+str(datcomb)
+
+datcomb[sample(1:nrow(datcomb), size = 5),]

@@ -1,0 +1,39 @@
+  ########################
+## Plots!             ##
+## Created 6/30/2015  ##
+## A Ben Rogers Joint ##
+########################
+
+######################
+## Preamble: Plots! ##
+######################
+
+library(ggplot2)
+library(rockchalk)
+library(lattice)
+library(Hmisc)
+library(reshape)
+
+## Make it easier to see where the plots are going:
+fileLoc <- "/Users/bjr/GitHub/NotWomButSOld/Output/"
+
+## Plot 1: Percent breakdown of opposition reasons
+levels(datcomb$WhyOpposeFemaleService)
+
+labeling <- c("DeathsDemoralizing", "Pregnancy", "PrisonerPotential", "DoNotOppose", "MalesDiminishedEffectiveness", "PhysicalQualifications", "Other", "UnitCohesion", "LowPrivacy")
+
+
+jpeg(paste0(fileLoc, "Opposition.jpg"))
+plot(table(datcomb$WhyOpposeFemaleService), xaxt = "n")
+axis(1, 1:9, labels = F)
+text(x = 1:9 - .25, y = par("usr")[3]-35, labels = labeling, xpd = T, srt = 15)
+dev.off()
+
+
+
+
+P <- table(datcomb$RaceComb, datcomb$BathroomQuestion)
+Pm <- melt(P)
+mp <- melt(table(datcomb$RaceComb))
+ggplot(data = mp, aes(x = Var.1, y = value)) + geom_blank()
+

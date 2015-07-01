@@ -45,3 +45,67 @@ data.frame(
 ##########################################
 ## alt q breaks up giant blocks of text ##
 ##########################################
+
+## Weird Hypotheses
+
+## Boys Club Hypothesis: Male soldiers who consider themselves more masculine will be less likely to support female integration
+levels(datcomb$MasculineFeminine) ## NOte that 10 is the reference category
+
+m1 <- glm(NumSupport ~ MasculineFeminine, data = datcomb, family = binomial)
+summary(m1)
+exp(coef(m1))
+plot(datcomb$NumSupport ~ datcomb$MasculineFeminine)
+## Racial Hypothesis: All minorities will be more likely to support integration
+datcomb$RaceComb <- relevel(datcomb$RaceComb, "White")
+
+m2 <- update(m1, . ~. - MasculineFeminine + RaceComb)
+summary(m2)
+
+## Called it!
+
+## Divorce Hypothesis
+
+m3 <- update(m1, . ~. - MasculineFeminine + MaritalSimp)
+summary(m3)
+
+
+## Pro Dev Hypothesis: Military professional development makes you less likely to support integration, but Female pro development makes you more likely to be supportive of integration
+
+
+m4 <- update(m1, . ~. - MasculineFeminine + ProfDevFemale + ProfDevMilitary +ProfDevCivilian)
+summary(m4)
+
+## Obvious Education question
+m5 <- update(m1, . ~. - MasculineFeminine + Education)
+summary(m5)
+mosaicplot(formula(m5), data = datcomb, color = T)
+outreg(m5, type = 'html')
+
+## ## See what the average what society thinks females are question looks like
+m6 <- update(m1, . ~ . - MasculineFeminine + FemalesAreEmotional)
+summary(m6)
+
+## Ideology question
+levels(datcomb$Ideology)
+table(datcomb$Ideology) ## Note the low number of very liberal people
+m7 <- update(m1, . ~ . - MasculineFeminine + Ideology)
+summary(m7)
+
+mosaicplot(formula(m7), data = datcomb)
+
+##
+m8 <-  update(m1, . ~ . - MasculineFeminine + BirthYear)
+summary(m8)
+plot(formula(m8), data = datcomb)
+
+
+## THose who don't care about bathrooms are more likely to support integration
+
+levels(datcomb$BathroomQuestion)
+m9 <- update(m1, .~. -MasculineFeminine + BathroomQuestion)
+summary(m9)
+
+## The more comfortable you are working with women, the more likely you are to support integration
+
+m10 <- update(m1, . ~ . - MasculineFeminine + ComfortFemales)
+summary(m10)

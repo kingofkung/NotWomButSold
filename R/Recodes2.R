@@ -134,3 +134,22 @@ datcomb <- as.data.frame(datcomb)
 str(datcomb)
 
 datcomb[sample(1:nrow(datcomb), size = 5),]
+
+##Make a variable that is 3 ranks: Warrant, Commissioned, or Enlisted
+
+datcomb$GradeRankSimp <- as.character(datcomb$GradeRank)
+datcomb$GradeRankSimp <- substr(datcomb$GradeRankSimp, 1, 1)
+
+datcomb$GradeRankSimp[datcomb$GradeRankSimp %in%  "E" ] <- "Warrant"
+datcomb$GradeRankSimp[datcomb$GradeRankSimp %in%  "C" ] <- "Commissioned"
+datcomb$GradeRankSimp[datcomb$GradeRankSimp %in%  "W" ] <- "Enlisted"
+## Wait, what is O
+datcomb$GradeRankSimp <- factor(datcomb$GradeRankSimp)
+
+##################################################################################################
+## ## For Dr. Haider-Markel                                                                     ##
+## library(foreign)                                                                             ##
+## write.dta(datcomb, file = "/Users/bjr/Desktop/School/WSFDat/CombData.dta")                   ##
+##                                                                                              ##
+## tst <- read.dta(file = "/Users/bjr/Desktop/School/WSFDat/CombData.dta", convert.factors = F) ##
+##################################################################################################

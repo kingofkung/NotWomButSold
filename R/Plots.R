@@ -58,9 +58,18 @@ Pm$valuepercs <- paste0(round(Pm$value/sum(Pm$value), 2)*100, "%")
 
 ##Why people don't like using ggplot2
 plotr <- ggplot(data = Pm, aes(x = Var.1, y = Var.2))
-plotr <- plotr + geom_point(aes(color = colPercs), size = 35, shape = 15)
+
+plotr <- plotr + geom_tile(aes(fill = colPercs), color = "white") ##, size = 35, shape = 15) ##
+
+
+## plotr <- plotr + geom_point(aes(color = colPercs, size = colPercs), shape = 15) ##, size = 35, shape = 15) ##
+################################################################################################################
+
+
 plotr <- plotr + labs(x = "Race", y = "Comfort Using Unisex Bathroom")
-plotr <- plotr + geom_text(aes(label = colPercslab))
+
+plotr <- plotr + geom_text(aes(label = colPercslab)) ##
+
 plotr <- plotr + scale_color_gradient(high = "blue", low = "yellow")
 plotr <- plotr + theme(legend.position = 'none')
 print(plotr)

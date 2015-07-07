@@ -13,7 +13,6 @@
 ##In order to make factor categories less terrible, I removed any / symbols, and replaced them with "or". I can fix this, but won't unless specifically asked. It's a bad idea to keep special characters that closely resemble the escape in reg expressions.
 
 library(rockchalk)
-library(ggplot2)
 
 head(femdat)
 
@@ -21,15 +20,6 @@ str(femdat)
 
 dat <- homdat
 varname <- "BirthYear"
-
-
-data.frame(
-    'freqs' =
-        sort(
-            summary(2015 - dat[, varname]),
-            decreasing = TRUE
-            )
-)
 
 
 
@@ -46,66 +36,119 @@ data.frame(
 ## alt q breaks up giant blocks of text ##
 ##########################################
 
-## Weird Hypotheses
+#############################################################################################################################################################################################
+## ## Weird Hypotheses                                                                                                                                                                     ##
+##                                                                                                                                                                                         ##
+## ## Boys Club Hypothesis: Male soldiers who consider themselves more masculine will be less likely to support female integration                                                         ##
+## levels(datcomb$MasculineFeminine) ## NOte that 10 is the reference category                                                                                                             ##
+##                                                                                                                                                                                         ##
+## m1 <- glm(NumSupport ~ MasculineFeminine, data = datcomb, family = binomial)                                                                                                            ##
+## summary(m1)                                                                                                                                                                             ##
+## exp(coef(m1))                                                                                                                                                                           ##
+## plot(datcomb$NumSupport ~ datcomb$MasculineFeminine)                                                                                                                                    ##
+## ## Racial Hypothesis: All minorities will be more likely to support integration                                                                                                         ##
+## datcomb$RaceComb <- relevel(datcomb$RaceComb, "White")                                                                                                                                  ##
+##                                                                                                                                                                                         ##
+## m2 <- update(m1, . ~. - MasculineFeminine + RaceComb)                                                                                                                                   ##
+## summary(m2)                                                                                                                                                                             ##
+##                                                                                                                                                                                         ##
+## ## Called it!                                                                                                                                                                           ##
+##                                                                                                                                                                                         ##
+## ## Divorce Hypothesis                                                                                                                                                                   ##
+##                                                                                                                                                                                         ##
+## m3 <- update(m1, . ~. - MasculineFeminine + MaritalSimp)                                                                                                                                ##
+## summary(m3)                                                                                                                                                                             ##
+##                                                                                                                                                                                         ##
+##                                                                                                                                                                                         ##
+## ## Pro Dev Hypothesis: Military professional development makes you less likely to support integration, but Female pro development makes you more likely to be supportive of integration ##
+##                                                                                                                                                                                         ##
+##                                                                                                                                                                                         ##
+## m4 <- update(m1, . ~. - MasculineFeminine + ProfDevFemale + ProfDevMilitary +ProfDevCivilian)                                                                                           ##
+## summary(m4)                                                                                                                                                                             ##
+##                                                                                                                                                                                         ##
+## ## Obvious Education question                                                                                                                                                           ##
+## m5 <- update(m1, . ~. - MasculineFeminine + Education)                                                                                                                                  ##
+## summary(m5)                                                                                                                                                                             ##
+## mosaicplot(formula(m5), data = datcomb, color = T)                                                                                                                                      ##
+## outreg(m5, type = 'html')                                                                                                                                                               ##
+##                                                                                                                                                                                         ##
+## ## ## See what the average what society thinks females are question looks like                                                                                                          ##
+## m6 <- update(m1, . ~ . - MasculineFeminine + FemalesAreEmotional)                                                                                                                       ##
+## summary(m6)                                                                                                                                                                             ##
+##                                                                                                                                                                                         ##
+## ## Ideology question                                                                                                                                                                    ##
+## levels(datcomb$Ideology)                                                                                                                                                                ##
+## table(datcomb$Ideology) ## Note the low number of very liberal people                                                                                                                   ##
+## m7 <- update(m1, . ~ . - MasculineFeminine + Ideology)                                                                                                                                  ##
+## summary(m7)                                                                                                                                                                             ##
+##                                                                                                                                                                                         ##
+## mosaicplot(formula(m7), data = datcomb)                                                                                                                                                 ##
+##                                                                                                                                                                                         ##
+## ##                                                                                                                                                                                      ##
+## m8 <-  update(m1, . ~ . - MasculineFeminine + BirthYear)                                                                                                                                ##
+## summary(m8)                                                                                                                                                                             ##
+## plot(formula(m8), data = datcomb)                                                                                                                                                       ##
+##                                                                                                                                                                                         ##
+##                                                                                                                                                                                         ##
+## ## THose who don't care about bathrooms are more likely to support integration                                                                                                          ##
+##                                                                                                                                                                                         ##
+## levels(datcomb$BathroomQuestion)                                                                                                                                                        ##
+## m9 <- update(m1, .~. -MasculineFeminine + BathroomQuestion)                                                                                                                             ##
+## summary(m9)                                                                                                                                                                             ##
+##                                                                                                                                                                                         ##
+## ## The more comfortable you are working with women, the more likely you are to support integration                                                                                      ##
+##                                                                                                                                                                                         ##
+## m10 <- update(m1, . ~ . - MasculineFeminine + ComfortFemales)                                                                                                                           ##
+## summary(m10)                                                                                                                                                                            ##
+#############################################################################################################################################################################################
 
-## Boys Club Hypothesis: Male soldiers who consider themselves more masculine will be less likely to support female integration
-levels(datcomb$MasculineFeminine) ## NOte that 10 is the reference category
 
-m1 <- glm(NumSupport ~ MasculineFeminine, data = datcomb, family = binomial)
-summary(m1)
-exp(coef(m1))
-plot(datcomb$NumSupport ~ datcomb$MasculineFeminine)
-## Racial Hypothesis: All minorities will be more likely to support integration
-datcomb$RaceComb <- relevel(datcomb$RaceComb, "White")
+## Wave 1.
 
-m2 <- update(m1, . ~. - MasculineFeminine + RaceComb)
-summary(m2)
+## Note: Do men, and do women separately.
+##########
+## Race ##
+##########
 
-## Called it!
+nrow(datcomb[datcomb$female == 1,])
 
-## Divorce Hypothesis
+m1m <- glm(NumSupport ~ RaceComb, data = datcomb[datcomb$female == 0,], family = binomial)
+summary(m1m)
 
-m3 <- update(m1, . ~. - MasculineFeminine + MaritalSimp)
-summary(m3)
+m1f <- glm(NumSupport ~ RaceComb, data = datcomb[datcomb$female == 1,], family = binomial)
+summary(m1f)
 
 
-## Pro Dev Hypothesis: Military professional development makes you less likely to support integration, but Female pro development makes you more likely to be supportive of integration
+##Age
+
+m2m <- update(m1m, .~. - RaceComb + BirthYear, data = datcomb[datcomb$female == 0,)
+summary(m2m)
+
+m2f <- update(m1f, .~. - RaceComb + BirthYear, data = datcomb[datcomb$female == 1,])
+summary(m2f)
+##Marital Status
+
+m3m <- update(m2m, .~. - BirthYear + MaritalSimp, data = datcomb[datcomb$female == 0,)
+summary(m3m)
+
+m3f <- update(m2f, .~. - BirthYear + MaritalSimp, data = datcomb[datcomb$female == 1,])
+summary(m3f)
 
 
-m4 <- update(m1, . ~. - MasculineFeminine + ProfDevFemale + ProfDevMilitary +ProfDevCivilian)
-summary(m4)
+## Times Deployed
+plot(datcomb$nDep)
+table(datcomb$nDep)
+m4m <- update(m3m, .~. - MaritalSimp + nDep, data = datcomb[datcomb$female == 0,)
+summary(m4m)
 
-## Obvious Education question
-m5 <- update(m1, . ~. - MasculineFeminine + Education)
-summary(m5)
-mosaicplot(formula(m5), data = datcomb, color = T)
-outreg(m5, type = 'html')
-
-## ## See what the average what society thinks females are question looks like
-m6 <- update(m1, . ~ . - MasculineFeminine + FemalesAreEmotional)
-summary(m6)
-
-## Ideology question
-levels(datcomb$Ideology)
-table(datcomb$Ideology) ## Note the low number of very liberal people
-m7 <- update(m1, . ~ . - MasculineFeminine + Ideology)
-summary(m7)
-
-mosaicplot(formula(m7), data = datcomb)
-
-##
-m8 <-  update(m1, . ~ . - MasculineFeminine + BirthYear)
-summary(m8)
-plot(formula(m8), data = datcomb)
+m4f <- update(m3f, .~. - MaritalSimp + nDep, data = datcomb[datcomb$female == 1,])
+summary(m4f)
 
 
-## THose who don't care about bathrooms are more likely to support integration
+## Education
 
-levels(datcomb$BathroomQuestion)
-m9 <- update(m1, .~. -MasculineFeminine + BathroomQuestion)
-summary(m9)
+m5m <- update(m4m, .~. - nDep + Education, data = datcomb[datcomb$female == 0,])
+summary(m5m)
 
-## The more comfortable you are working with women, the more likely you are to support integration
-
-m10 <- update(m1, . ~ . - MasculineFeminine + ComfortFemales)
-summary(m10)
+m5f <- update(m4f, .~. - nDep + Education, data = datcomb[datcomb$female == 1,])
+summary(m5f)

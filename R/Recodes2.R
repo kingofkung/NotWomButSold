@@ -1,4 +1,4 @@
-##################################
+x5f##################################
 ## Recodes 2: Electric Boogaloo ##
 ## Created 6/25/2015            ##
 ## A Ben Rogers Joint           ##
@@ -106,14 +106,13 @@ datcomb$MaritalSimp <- factor(datcomb$MaritalSimp)
 
 
 ## Eliminate question marks in ideology question
-
 datcomb$Ideology <- as.character(datcomb$Ideology)
 datcomb$Ideology <- gsub("[?]", "", datcomb$Ideology)
 datcomb$Ideology <- factor(datcomb$Ideology)
 
+
+
 ## Make a numeric opposition variable
-
-
 levels( datcomb$WhySupportFemaleService)
 
 datcomb$WhySupportFemaleService ==  "I oppose females serving in combat units"
@@ -135,21 +134,55 @@ str(datcomb)
 
 datcomb[sample(1:nrow(datcomb), size = 5),]
 
-##Make a variable that is 3 ranks: Warrant, Commissioned, or Enlisted
 
+## Number of Deployments Ndep
+## Create Number of Deployments variable that isn't hard to work with.
+data.frame(levels(datcomb$TimesDeployed))
+datcomb$nDep <- as.character(datcomb$TimesDeployed)
+datcomb$nDep <- gsub("deployment", "", datcomb$nDep)
+datcomb$nDep <- gsub("\\s[s]", "", datcomb$nDep)
+datcomb$nDep <- gsub("\\s", "", datcomb$nDep) ## Since 1s have an extra space, we need this to keep them in the data
+
+datcomb$nDep[datcomb$nDep %in% "Don't know"] <- NA
+datcomb$nDep <- factor(datcomb$nDep, levels = c("0", "1", "2", "3", "4", "5", "6", '7', '8', '9', '10', '11-15', '16-20', '20+'))
+
+## Keep 0 separate, 1-5, 6-10
+
+table(datcomb$female, datcomb$nDep)
+
+################################################
+## table(datcomb$nDep, datcomb$TimesDeployed) ## Looks Good
+################################################
+
+
+
+##Make a variable that is 3 ranks: Warrant, Commissioned, or Enlisted
 datcomb$GradeRankSimp <- as.character(datcomb$GradeRank)
 datcomb$GradeRankSimp <- substr(datcomb$GradeRankSimp, 1, 1)
 
-datcomb$GradeRankSimp[datcomb$GradeRankSimp %in%  "E" ] <- "Warrant"
-datcomb$GradeRankSimp[datcomb$GradeRankSimp %in%  "C" ] <- "Commissioned"
-datcomb$GradeRankSimp[datcomb$GradeRankSimp %in%  "W" ] <- "Enlisted"
+datcomb$GradeRankSimp[datcomb$GradeRankSimp %in%  "E" ] <- "Enlisted"
+datcomb$GradeRankSimp[datcomb$GradeRankSimp %in%  "O" ] <- "Commissioned"
+
+datcomb$GradeRankSimp[datcomb$GradeRankSimp %in%  "W" ] <- "Warrant"
 ## Wait, what is O
 datcomb$GradeRankSimp <- factor(datcomb$GradeRankSimp)
+table(datcomb$GradeRank, datcomb$GradeRankSimp)
 
-##################################################################################################
-## ## For Dr. Haider-Markel                                                                     ##
-## library(foreign)                                                                             ##
-## write.dta(datcomb, file = "/Users/bjr/Desktop/School/WSFDat/CombData.dta")                   ##
-##                                                                                              ##
-## tst <- read.dta(file = "/Users/bjr/Desktop/School/WSFDat/CombData.dta", convert.factors = F) ##
-##################################################################################################
+
+
+
+## Simplify Education variable so that we can read the chart on 1 page
+edLvls <- data.frame("lvls" = levels(datcomb$Education),
+                     "nulvls" = c("Assoc", "Bachelors", "GED", "HSGrad", "PostGrad","SomeCollege","TechOrTradeSchool")) ##
+
+datcomb$Ed <- datcomb$Education
+levels(datcomb$Ed) <- c(levels(datcomb$Ed), as.character(edLvls$nulvls))
+
+for(i in 1:nrow(edLvls)) datcomb$Ed[datcomb$Education %in% edLvls$lvls[i]] <- edLvls$nulvls[i]
+table(datcomb$Ed, datcomb$Education)
+
+
+
+
+
+

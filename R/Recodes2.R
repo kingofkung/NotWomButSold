@@ -148,12 +148,13 @@ datcomb$nDep <- factor(datcomb$nDep, levels = c("0", "1", "2", "3", "4", "5", "6
 
 ## Keep 0 separate, 1-5, 6-10
 
-table(datcomb$female, datcomb$nDep)
+levels(datcomb$nDep) <- c(levels(datcomb$nDep), '1-5', '6-10')
+datcomb$nDep[datcomb$nDep %in% c("1", '2', '3', '4', '5')] <- '1-5'
+datcomb$nDep[datcomb$nDep %in% c("6", '7', '8', '9', '10')] <- '6-10'
 
-################################################
-## table(datcomb$nDep, datcomb$TimesDeployed) ## Looks Good
-################################################
+datcomb$nDep <- factor(datcomb$nDep)
 
+table(datcomb$TimesDeployed, datcomb$nDep) ##Looks in Order
 
 
 ##Make a variable that is 3 ranks: Warrant, Commissioned, or Enlisted
@@ -179,7 +180,6 @@ datcomb$Ed <- datcomb$Education
 levels(datcomb$Ed) <- c(levels(datcomb$Ed), as.character(edLvls$nulvls))
 
 for(i in 1:nrow(edLvls)) datcomb$Ed[datcomb$Education %in% edLvls$lvls[i]] <- edLvls$nulvls[i]
-table(datcomb$Ed, datcomb$Education)
 
 
 

@@ -121,14 +121,14 @@ summary(m1f)
 
 ##Age
 
-m2m <- update(m1m, .~. - RaceComb + BirthYear, data = datcomb[datcomb$female == 0,)
+m2m <- update(m1m, .~. - RaceComb + BirthYear, data = datcomb[datcomb$female == 0,])
 summary(m2m)
 
 m2f <- update(m1f, .~. - RaceComb + BirthYear, data = datcomb[datcomb$female == 1,])
 summary(m2f)
 ##Marital Status
 
-m3m <- update(m2m, .~. - BirthYear + MaritalSimp, data = datcomb[datcomb$female == 0,)
+m3m <- update(m2m, .~. - BirthYear + MaritalSimp, data = datcomb[datcomb$female == 0,])
 summary(m3m)
 
 m3f <- update(m2f, .~. - BirthYear + MaritalSimp, data = datcomb[datcomb$female == 1,])
@@ -138,7 +138,7 @@ summary(m3f)
 ## Times Deployed
 plot(datcomb$nDep)
 table(datcomb$nDep)
-m4m <- update(m3m, .~. - MaritalSimp + nDep, data = datcomb[datcomb$female == 0,)
+m4m <- update(m3m, .~. - MaritalSimp + nDep, data = datcomb[datcomb$female == 0,])
 summary(m4m)
 
 m4f <- update(m3f, .~. - MaritalSimp + nDep, data = datcomb[datcomb$female == 1,])
@@ -147,8 +147,18 @@ summary(m4f)
 
 ## Education
 
-m5m <- update(m4m, .~. - nDep + Education, data = datcomb[datcomb$female == 0,])
+m5m <- update(m4m, .~. - nDep + Ed, data = datcomb[datcomb$female == 0,])
 summary(m5m)
 
-m5f <- update(m4f, .~. - nDep + Education, data = datcomb[datcomb$female == 1,])
+m5f <- update(m4f, .~. - nDep + Ed, data = datcomb[datcomb$female == 1,])
 summary(m5f)
+
+## Ideology
+levels(datcomb$Ideology)
+m6m <- update(m5m, .~. - Ed + Ideo, data = datcomb[datcomb$female == 0,])
+summary(m6m)
+
+m6f <- update(m5f, .~. - Ed + Ideo, data = datcomb[datcomb$female == 1,]) ## Right here, tiny, tiny number of respondents in liberal and esp. very liberal category. ## Talk to profs about combining liberals together into 1 (still small) category
+summary(m6f)
+
+## Seen Combat

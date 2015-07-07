@@ -152,7 +152,7 @@ levels(datcomb$nDep) <- c(levels(datcomb$nDep), '1-5', '6-10')
 datcomb$nDep[datcomb$nDep %in% c("1", '2', '3', '4', '5')] <- '1-5'
 datcomb$nDep[datcomb$nDep %in% c("6", '7', '8', '9', '10')] <- '6-10'
 
-datcomb$nDep <- factor(datcomb$nDep)
+datcomb$nDep <- factor(datcomb$nDep, levels = c("0", '1-5', '6-10', '11-15', '16-20', '20+'))
 
 table(datcomb$TimesDeployed, datcomb$nDep) ##Looks in Order
 
@@ -182,7 +182,7 @@ levels(datcomb$Ed) <- c(levels(datcomb$Ed), as.character(edLvls$nulvls))
 for(i in 1:nrow(edLvls)) datcomb$Ed[datcomb$Education %in% edLvls$lvls[i]] <- edLvls$nulvls[i]
 
 
+## Relevel Ideology so we can easily read it
 
-
-
-
+prefOrd <- levels(datcomb$Ideology)[c(6,1,3,2,5,4)]
+datcomb$Ideo <- factor(datcomb$Ideology, levels = prefOrd)

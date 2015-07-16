@@ -1,4 +1,4 @@
-x5f##################################
+##################################
 ## Recodes 2: Electric Boogaloo ##
 ## Created 6/25/2015            ##
 ## A Ben Rogers Joint           ##
@@ -82,10 +82,13 @@ datcomb$RaceComb[ grep("Black", datcomb$RaceComb)] <- "Black"
 datcomb$RaceComb[ grep("Hispanic", datcomb$RaceComb)] <- "Hispanic"
 datcomb$RaceComb[ grep("White", datcomb$RaceComb)] <- "White"
 
+
+
 ## Eliminate unwanted spaces
 datcomb$RaceComb <- gsub("\\s", "", datcomb$RaceComb)
 datcomb$RaceComb[datcomb$RaceComb == ""] <- NA
-datcomb$RaceComb <- factor(datcomb$RaceComb)
+datcomb$RaceComb <- factor(datcomb$RaceComb, levels = c("White", "Asian", "Black", "Hispanic"))
+
 
 
 ## Begin working on marital status
@@ -186,3 +189,5 @@ for(i in 1:nrow(edLvls)) datcomb$Ed[datcomb$Education %in% edLvls$lvls[i]] <- ed
 
 prefOrd <- levels(datcomb$Ideology)[c(6,1,3,2,5,4)]
 datcomb$Ideo <- factor(datcomb$Ideology, levels = prefOrd)
+datcomb$Ideo[datcomb$Ideo %in% "No Comment"] <- NA
+datcomb$Ideo <- factor(datcomb$Ideo)

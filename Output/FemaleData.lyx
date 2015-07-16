@@ -1,0 +1,617 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize custom
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\paperwidth 8.5in
+\paperheight 11in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Female Data Results}
+\backslash
+label{regrlabl}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+begin{tabular}{*{8}{l}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+                  & M1 & M2 & M3 & M4 & M5 & M6 & M7   
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                   &Estimate   &Estimate   &Estimate   &Estimate   &Estimate
+   &Estimate   &Estimate 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &(S.E.)   &(S.E.)   &(S.E.)   &(S.E.)   &(S.E.)   &(S.E.)   &(S.E.) 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+   (Intercept)     &16.566 &-18.910 &1.056* &1.569** &1.322* &0.405 &2.303* 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &(979.610)   &(63.363)   &(0.410)   &(  0.492)   &(0.563)  
+ &(   0.645)   &(1.049)  
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   RaceCombBlack    &-14.720   & .
+        & .
+        & .
+        & .
+        & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &(979.610)   &         &         &         &         & 
+        &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   RaceCombHispanic    &-15.421   & .
+        & .
+        & .
+        & .
+        & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &(979.610)   &         &         &         &         & 
+        &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   RaceCombWhite    &-14.966   & .
+        & .
+        & .
+        & .
+        & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &(979.610)   &         &         &         &         & 
+        &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   BirthYear         & .
+      &0.010   & .
+        & .
+        & .
+        & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &( 0.032)   &         &         &         &  
+       &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   MaritalSimpService Member      & .
+        & .
+      &0.417   & .
+        & .
+        & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &(0.474)   &         &         &   
+      &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   nDep1-5           & .
+        & .
+        & .
+      &0.018   & .
+        & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &(  0.535)   &         & 
+        &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   nDep6-10          & .
+        & .
+        & .
+      &14.997   & .
+        & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &(906.943)   &         & 
+        &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   EdBachelors       & .
+        & .
+        & .
+        & .
+      &0.065   & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &(0.665)   &   
+      &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   EdHSGrad          & .
+        & .
+        & .
+        & .
+      &0.758   & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &(1.201)   &   
+      &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   EdPostGrad        & .
+        & .
+        & .
+        & .
+      &0.775   & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &(0.691)   &   
+      &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   EdSomeCollege      & .
+        & .
+        & .
+        & .
+      &0.137   & .
+        & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &(0.663)   &   
+      &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   IdeoConservative      & .
+        & .
+        & .
+        & .
+        & .
+      &0.659   & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &         &(  
+ 0.742)   &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   IdeoModerate      & .
+        & .
+        & .
+        & .
+        & .
+      &1.674*   & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &         &(  
+ 0.736)   &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   IdeoLiberal       & .
+        & .
+        & .
+        & .
+        & .
+      &1.735   & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &         &(  
+ 0.988)   &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   IdeoVery Liberal      & .
+        & .
+        & .
+        & .
+        & .
+      &16.161   & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &         &(1385.378)
+   &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   IdeoNo Comment      & .
+        & .
+        & .
+        & .
+        & .
+      &1.232   & .
+      
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &         &(  
+ 0.766)   &        
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   ServedInCombatYes      & .
+        & .
+        & .
+        & .
+        & .
+        & .
+      &-0.701 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &         &   
+      &(1.070)  
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ N                 &182       &195       &149       &195       &195    
+   &195       &166       
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+    Deviance         &162.755   &173.996   &148.924   &171.539   &171.399   &165.368
+   &146.911   
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+ $-2LLR (Model chi^2)$        & 3.377       & 0.104       & 0.749       & 2.561
+       & 2.702       & 8.732       & 0.510 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+multicolumn{8}{c}{${*  p}
+\backslash
+le 0.05$${*
+\backslash
+!
+\backslash
+!*  p}
+\backslash
+le 0.01$${*
+\backslash
+!
+\backslash
+!*
+\backslash
+!
+\backslash
+!*  p}
+\backslash
+le 0.001$}
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+end{table}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

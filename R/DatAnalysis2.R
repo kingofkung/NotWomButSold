@@ -162,3 +162,17 @@ m6f <- update(m5f, .~. - Ed + Ideo, data = datcomb[datcomb$female == 1,]) ## Rig
 summary(m6f)
 
 ## Seen Combat
+
+m7m <- update(m6m, .~. - Ideo + ServedInCombat, data = datcomb[datcomb$female == 0,])
+summary(m7m)
+
+m7f <- update(m6f, .~. - Ideo + ServedInCombat, data = datcomb[datcomb$female == 1,])
+summary(m7f)
+
+## Do some outreg tables
+
+outreg(list(m1m, m2m, m3m, m4m, m5m, m6m, m7m),
+       type = 'latex', title = "Male Data Results")
+
+outreg(list(m1f, m2f, m3f, m4f, m5f, m6f, m7f),
+       type = 'latex', title = "Female Data Results")

@@ -176,3 +176,39 @@ outreg(list(m1m, m2m, m3m, m4m, m5m, m6m, m7m),
 
 outreg(list(m1f, m2f, m3f, m4f, m5f, m6f, m7f),
        type = 'latex', title = "Female Data Results")
+
+
+
+## Next Phase: New DVs to indicate support
+## Consider doing Ordered Logit, ordered Probit
+## Supporting integration is higher, not supporting is lower
+########################################
+## Comfort working with females ##Q24 ##
+########################################
+
+############################
+## preference of boss Q25 ##
+############################
+##############################
+## Cohesion questions ##Q31 ##
+##############################
+#####################
+## Q32  Male Values##
+#####################
+
+##############
+## Q38, Q39 ##
+##############
+
+## Non-Control Independent variables
+## and continue separating out the men and women
+############################################################
+## MasculineFeminine/FeminineMasculine as numeric indices ##
+############################################################
+
+#############################################################
+## index on how females are considered in American Society ##
+#############################################################
+## These are under Q42 FemalesAre... in the keys
+## Note: The stereotypes are positive and negative
+## Watch for negative codings (FemalesAreWarm is Positive ... for now)

@@ -183,6 +183,23 @@ datcomb$Ed <- datcomb$Education
 levels(datcomb$Ed) <- c(levels(datcomb$Ed), as.character(edLvls$nulvls))
 
 for(i in 1:nrow(edLvls)) datcomb$Ed[datcomb$Education %in% edLvls$lvls[i]] <- edLvls$nulvls[i]
+datcomb$Ed <- factor(datcomb$Ed)
+## Make an education index
+data.frame(summary(datcomb$Ed))
+
+datcomb$EdInd <- as.character(datcomb$Ed)
+
+edVals <- c("GED" = "1", "HSGrad" = "1", "SomeCollege" = "2", "TechOrTradeSchool" = "2", "Assoc" = "3", "Bachelors" = "4", "PostGrad" = "5")
+
+for(i in 1:length(edVals)) datcomb$EdInd[datcomb$EdInd %in% labels(edVals)[i]] <- edVals[i]
+
+table(datcomb$Ed, datcomb$EdInd)
+
+
+data.frame(datcomb$Ed)
+
+
+## TechOrTradeSchool should be a separate Dummy Variable
 
 
 ## Relevel Ideology so we can easily read it
@@ -191,3 +208,15 @@ prefOrd <- levels(datcomb$Ideology)[c(6,1,3,2,5,4)]
 datcomb$Ideo <- factor(datcomb$Ideology, levels = prefOrd)
 datcomb$Ideo[datcomb$Ideo %in% "No Comment"] <- NA
 datcomb$Ideo <- factor(datcomb$Ideo)
+
+##Index for Ideology
+levels(datcomb$Ideo)
+datcomb$IdeoInd <- as.character(datcomb$Ideo)
+
+IdVals <- c("Very conservative" = "5", "Conservative" = "4", "Moderate" = "3", "Liberal" = "2", "Very Liberal" = "1")
+
+for(j in 1:length(IdVals)) datcomb$IdeoInd[datcomb$IdeoInd %in% labels(IdVals)[j]] <- IdVals[j]
+
+#######################################################
+## table(datcomb$Ideo, datcomb$IdeoInd) ##Looks Good ##
+#######################################################

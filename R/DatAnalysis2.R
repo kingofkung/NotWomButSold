@@ -147,27 +147,35 @@ summary(m4f)
 
 ## Education
 
-m5m <- update(m4m, .~. - nDep + Ed, data = datcomb[datcomb$female == 0,])
+m5m <- update(m4m, .~. - nDep + EdInd, data = datcomb[datcomb$female == 0,])
 summary(m5m)
 
-m5f <- update(m4f, .~. - nDep + Ed, data = datcomb[datcomb$female == 1,])
+m5f <- update(m4f, .~. - nDep + EdInd, data = datcomb[datcomb$female == 1,])
 summary(m5f)
 
 ## Ideology
 levels(datcomb$Ideology)
-m6m <- update(m5m, .~. - Ed + Ideo, data = datcomb[datcomb$female == 0,])
+m6m <- update(m5m, .~. - EdInd + IdeoInd, data = datcomb[datcomb$female == 0,])
 summary(m6m)
 
-m6f <- update(m5f, .~. - Ed + Ideo, data = datcomb[datcomb$female == 1,]) ## Right here, tiny, tiny number of respondents in liberal and esp. very liberal category. ## Talk to profs about combining liberals together into 1 (still small) category
+m6f <- update(m5f, .~. - EdInd + IdeoInd, data = datcomb[datcomb$female == 1,]) ## Right here, tiny, tiny number of respondents in liberal and esp. very liberal category. ## Talk to profs about combining liberals together into 1 (still small) category
 summary(m6f)
 
 ## Seen Combat
 
-m7m <- update(m6m, .~. - Ideo + ServedInCombat, data = datcomb[datcomb$female == 0,])
+m7m <- update(m6m, .~. - IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 summary(m7m)
 
 m7f <- update(m6f, .~. - Ideo + ServedInCombat, data = datcomb[datcomb$female == 1,])
 summary(m7f)
+
+mgm <- glm(NumSupport ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat + Reserves, data = datcomb[datcomb$female == 0,])
+
+
+summary(mgm)
+
+mgf <- update(mgm, .~. - Reserves, data = datcomb[datcomb$female == 1,])
+summary(mgf)
 
 ## Do some outreg tables
 

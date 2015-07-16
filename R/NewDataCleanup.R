@@ -20,9 +20,15 @@ homdatNG <- read.xlsx2("/Users/bjr/Desktop/School/WSFDat/National Guard SF Males
 femdat <- read.xlsx2("/Users/bjr/Desktop/School/WSFDat/Active Duty USASOC Females - Expanded (WIP 11_07_14).xlsx", sheetIndex = "Raw")
 
 
+
+
 ##Combine all male data
-homdatcols <- ncol(homdat) - 3 ## The last 3 raw columns appear to be
-homdat <- rbind(homdat[,1:homdatcols], homdatNG)
+homdatcols <- ncol(homdat) - 3 ## The last 3 raw columns appear to be dates
+homdat <- homdat[,1:homdatcols]
+homdat$Reserves <- "ActiveDuty"
+homdatNG$Reserves <- "NationalGuard"
+
+homdat <- rbind(homdat, homdatNG)
 
 
 ## Read in the old keys

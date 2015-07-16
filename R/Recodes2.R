@@ -189,10 +189,10 @@ data.frame(summary(datcomb$Ed))
 
 datcomb$EdInd <- as.character(datcomb$Ed)
 
-edVals <- c("GED" = "1", "HSGrad" = "1", "SomeCollege" = "2", "TechOrTradeSchool" = "2", "Assoc" = "3", "Bachelors" = "4", "PostGrad" = "5")
+edVals <- c("GED" = "1", "HSGrad" = "1", "SomeCollege" = "2", "TechOrTradeSchool" = NA, "Assoc" = "3", "Bachelors" = "4", "PostGrad" = "5")
 
 for(i in 1:length(edVals)) datcomb$EdInd[datcomb$EdInd %in% labels(edVals)[i]] <- edVals[i]
-
+datcomb$EdInd <- as.numeric(as.character(datcomb$EdInd))
 table(datcomb$Ed, datcomb$EdInd)
 
 
@@ -200,6 +200,10 @@ data.frame(datcomb$Ed)
 
 
 ## TechOrTradeSchool should be a separate Dummy Variable
+datcomb$TechOrTS <- NA
+datcomb$TechOrTS[datcomb$Ed == "TechOrTradeSchool"] <- 1
+datcomb$TechOrTS[datcomb$Ed != "TechOrTradeSchool"] <- 0
+table(datcomb$Ed, datcomb$TechOrTS)
 
 
 ## Relevel Ideology so we can easily read it
@@ -217,6 +221,10 @@ IdVals <- c("Very conservative" = "5", "Conservative" = "4", "Moderate" = "3", "
 
 for(j in 1:length(IdVals)) datcomb$IdeoInd[datcomb$IdeoInd %in% labels(IdVals)[j]] <- IdVals[j]
 
+datcomb$IdeoInd <- as.numeric(as.character(datcomb$IdeoInd))
+
 #######################################################
 ## table(datcomb$Ideo, datcomb$IdeoInd) ##Looks Good ##
 #######################################################
+
+substr(datcomb$FemalesAreCompetent, 1, 1)

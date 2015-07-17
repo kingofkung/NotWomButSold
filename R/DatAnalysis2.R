@@ -166,7 +166,7 @@ summary(m6f)
 m7m <- update(m6m, .~. - IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 summary(m7m)
 
-m7f <- update(m6f, .~. - Ideo + ServedInCombat, data = datcomb[datcomb$female == 1,])
+m7f <- update(m6f, .~. - IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,])
 summary(m7f)
 
 mgm <- glm(NumSupport ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat + Reserves, data = datcomb[datcomb$female == 0,])
@@ -179,10 +179,10 @@ summary(mgf)
 
 ## Do some outreg tables
 
-outreg(list(m1m, m2m, m3m, m4m, m5m, m6m, m7m),
+outreg(list(m1m, m2m, m3m, m4m, m5m, m6m, m7m, mgm),
        type = 'latex', title = "Male Data Results")
 
-outreg(list(m1f, m2f, m3f, m4f, m5f, m6f, m7f),
+outreg(list(m1f, m2f, m3f, m4f, m5f, m6f, m7f, mgf),
        type = 'latex', title = "Female Data Results")
 
 

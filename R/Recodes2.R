@@ -228,3 +228,8 @@ datcomb$IdeoInd <- as.numeric(as.character(datcomb$IdeoInd))
 #######################################################
 
 substr(datcomb$FemalesAreCompetent, 1, 1)
+
+
+## Reorder MISO Influence for our chart
+
+datcomb$MISOInfluence <- factor(datcomb$MISOInfluence, levels(datcomb$MISOInfluence)[c(3, 6, 1, 5, 2, 4)])

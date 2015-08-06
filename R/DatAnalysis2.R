@@ -197,15 +197,17 @@ library(MASS)
 ## Comfort working with females ##Q24 ##
 ########################################
 
-mComfortFem <- polr( ComfortFemales ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+mComfortFemF <- polr( ComfortFemales ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,] )
+mComfortFemM <- polr( ComfortFemales ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0, ] )
 
-summary(mComfortFem)
 
 ############################
 ## preference of boss Q25 ##
 ############################
 library(nnet)
-mBossPref <- multinom(BossPrefRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+mBossPrefM <- multinom(BossPrefRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
+
+
 summary(mBossPref) ## As I expected, too few preferring females to make it matter
 
 str(summary(mBossPref))
@@ -226,25 +228,36 @@ data.frame("MaleRR" = exp(coef(mBossPref))["Male",],
 ## Cohesion questions ##Q31 ##
 ##############################
 
-polr(CohIntegrateTenseRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+mCohIntTensF <- polr(CohIntegrateTenseRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,])
+mCohIntTensM <- polr(CohIntegrateTenseRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 
-polr(CohMaleDomRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+mCohMaleDomF <- polr(CohMaleDomRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,])
+mCohMaleDomM <- polr(CohMaleDomRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 
-polr(CohNonMilitaryRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+mCohCivF <- polr(CohNonMilitaryRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,])
+mCohCivM <- polr(CohNonMilitaryRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 
-polr(CohLanguageBanRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+mCohLanguageF <- polr(CohLanguageBanRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,])
+mCohLanguageM <- polr(CohLanguageBanRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 
-polr(CohPromoInequitableRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+mCohPromoF <- polr(CohPromoInequitableRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,])
+mCohPromoM <- polr(CohPromoInequitableRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 
-polr(CohCivInterlopingRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+mCohCivInterlopersF <- polr(CohCivInterlopingRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,])
+mCohCivInterlopersM <- polr(CohCivInterlopingRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 
-polr(CohSexHarrassRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+
+mCohSexHarrassF <- polr(CohSexHarrassRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,])
+mCohSexHarrassM <- polr(CohSexHarrassRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 
 
 
 ######################
 ## Q32  Male Values ##
 ######################
+
+mMaleValsF <- polr(MaleValues~RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 1,])
+mMaleValsM <- polr(MaleValues~RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb[datcomb$female == 0,])
 
 ##############
 ## Q38, Q39 ##

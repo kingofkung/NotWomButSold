@@ -296,3 +296,17 @@ datcomb$CohCivInterlopingRec <- cohesionRec(datcomb$CohesionCivInterloping)
 
 datcomb$CohSexHarrassRec <-  cohesionRec(datcomb$CohesionSexHarrass)
 
+
+## Rearrange MaleValues so that the order is correct
+
+levels(datcomb$MaleValues)
+datcomb$MaleValues <- factor(datcomb$MaleValues, levels = c("Strongly agree", "Somewhat agree", "Somewhat disagree", "Strongly disagree"))
+
+datcomb[, c("MaleValues", "female")]
+
+
+##Write the latest version of the code for Dr. Hader Markel
+############################################################################################################################################
+## library(foreign)                                                                                                                       ##
+## write.dta(datcomb, file = "/Users/bjr/Dropbox/Women in Special Forces Project Folder/Ben Rogers & Carolina Costa Candal/CombData.dta") ##
+############################################################################################################################################

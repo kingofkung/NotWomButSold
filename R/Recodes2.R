@@ -233,3 +233,66 @@ substr(datcomb$FemalesAreCompetent, 1, 1)
 ## Reorder MISO Influence for our chart
 
 datcomb$MISOInfluence <- factor(datcomb$MISOInfluence, levels(datcomb$MISOInfluence)[c(3, 6, 1, 5, 2, 4)])
+
+
+## Begin working on DVs for wave II
+##First Dv to look at: ComfortFemales
+
+levels(datcomb$ComfortFemales) ## All appears to be in order
+
+## Look at q25: BossGenderPref
+levels(datcomb$BossGenderPref) ## Too wordy. Let's cut it down
+
+datcomb$BossPrefRec <- as.character(datcomb$BossGenderPref)
+datcomb$BossPrefRec[datcomb$BossPrefRec %in% "A male boss?"] <- "Male"
+datcomb$BossPrefRec[datcomb$BossPrefRec %in% "A female boss?"] <- "Female"
+datcomb$BossPrefRec[datcomb$BossPrefRec %in% "No preference - No difference"] <- "No Difference"
+
+table(datcomb$BossGenderPref, datcomb$BossPrefRec)
+## Issue to talk with Dr. Haider-Markel about: We have only 8 people saying they'd like a female boss.
+
+## Look at Q31 AKA the Cohesion Questions
+levels()
+
+table(datcomb$CohesionIntegrationTensions,  )
+##CohesionMaleDom
+
+datcomb$CohesionMaleDom
+
+##' a function to get the recoded Cohesion variables taken care of
+##' @title cohesionRec
+##' @param dat # A single factor variable with the levels seen in the factor command
+##' @return dat, but with the levels reordered properly
+##' @author Benjamin Rogers
+cohesionRec <- function(dat){
+    dat <- factor(dat, levels = c("Greatly Hurt Unit Cohesiveness",  "Somewhat Hurt Unit Cohesiveness",  "No Effect on Unit Cohesiveness"  ))
+    return(dat)
+}
+
+##CohesionIntegrationTensions
+datcomb$CohIntegrateTenseRec <- cohesionRec(datcomb$CohesionIntegrationTensions)
+
+##CohesionMaleDom
+datcomb$CohMaleDomRec <- cohesionRec( datcomb$CohesionMaleDom)
+##CohesionNonMilitary
+
+datcomb$CohNonMilitaryRec <- cohesionRec(datcomb$CohesionNonMilitary)
+
+##CohesionLanguageBan
+
+datcomb$CohLanguageBanRec <- cohesionRec(datcomb$CohesionLanguageBan)
+
+##CohesionPromoInequitable
+
+datcomb$CohPromoInequitableRec <- cohesionRec(datcomb$CohesionPromoInequitable)
+
+
+##CohesionCivInterloping
+
+datcomb$CohCivInterlopingRec <- cohesionRec(datcomb$CohesionCivInterloping)
+
+
+##CohesionSexHarrass
+
+datcomb$CohSexHarrassRec <-  cohesionRec(datcomb$CohesionSexHarrass)
+

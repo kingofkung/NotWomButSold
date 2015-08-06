@@ -190,19 +190,61 @@ outreg(list(m1f, m2f, m3f, m4f, m5f, m6f, m7f, mgf),
 ## Next Phase: New DVs to indicate support
 ## Consider doing Ordered Logit, ordered Probit
 ## Supporting integration is higher, not supporting is lower
+
+library(MASS)
+
 ########################################
 ## Comfort working with females ##Q24 ##
 ########################################
 
+mComfortFem <- polr( ComfortFemales ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+
+summary(mComfortFem)
+
 ############################
 ## preference of boss Q25 ##
 ############################
+library(nnet)
+mBossPref <- multinom(BossPrefRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+summary(mBossPref) ## As I expected, too few preferring females to make it matter
+
+str(summary(mBossPref))
+
+summary(mBossPref)$standard.errors
+
+methods(class = class(summary(mBossPref)))
+
+data.frame("MleCoef" = coef(mBossPref)["Male", ],
+           "MaleSE" = summary(mBossPref)$standard.errors["Male",] )
+
+data.frame("MaleRR" = exp(coef(mBossPref))["Male",],
+           "NoDiffRR" = exp(coef(mBossPref))["No Difference",] )
+
+
+
 ##############################
 ## Cohesion questions ##Q31 ##
 ##############################
-#####################
-## Q32  Male Values##
-#####################
+
+polr(CohIntegrateTenseRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+
+polr(CohMaleDomRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+
+polr(CohNonMilitaryRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+
+polr(CohLanguageBanRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+
+polr(CohPromoInequitableRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+
+polr(CohCivInterlopingRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+
+polr(CohSexHarrassRec ~ RaceComb + BirthYear + MaritalSimp + nDep + EdInd + IdeoInd + ServedInCombat, data = datcomb)
+
+
+
+######################
+## Q32  Male Values ##
+######################
 
 ##############
 ## Q38, Q39 ##

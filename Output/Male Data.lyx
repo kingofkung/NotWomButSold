@@ -107,7 +107,8 @@ hline
 
 \begin_layout Plain Layout
 
-                  & M1 & M2 & M3 & M4 & M5 & M6 & M7 & M8   
+                  & Race & Age & Marital & Deployments & Education & Ideology
+ & Served & Full   
 \backslash
 tabularnewline
 \end_layout
@@ -160,7 +161,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   RaceCombAsian    &0.531   & .
+   Asian    &0.531   & .
         & .
         & .
         & .
@@ -181,7 +182,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   RaceCombBlack    &0.663*   & .
+   Black    &0.663*   & .
         & .
         & .
         & .
@@ -202,7 +203,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   RaceCombHispanic    &0.377   & .
+   Hispanic    &0.377   & .
         & .
         & .
         & .
@@ -223,7 +224,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   BirthYear         & .
+   Age         & .
       &-0.077***   & .
         & .
         & .
@@ -244,7 +245,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   MaritalSimpService Member      & .
+   Married a Service Member      & .
         & .
       &0.402   & .
         & .
@@ -265,7 +266,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   nDep1-5           & .
+   Deployments 1-5           & .
         & .
         & .
       &1.342   & .
@@ -286,7 +287,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   nDep6-10          & .
+   Deployments 6-10          & .
         & .
         & .
       &1.662*   & .
@@ -307,7 +308,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   nDep11-15         & .
+   Deployments 11-15         & .
         & .
         & .
       &1.792*   & .
@@ -328,7 +329,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   nDep16-20         & .
+   Deployments 16-20         & .
         & .
         & .
       &1.442   & .
@@ -349,7 +350,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   nDep20+           & .
+   Deployments 20+           & .
         & .
         & .
       &2.219**   & .
@@ -370,7 +371,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   EdInd             & .
+   Education             & .
         & .
         & .
         & .
@@ -391,7 +392,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   IdeoInd           & .
+   Ideology           & .
         & .
         & .
         & .
@@ -412,7 +413,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   ServedInCombatYes      & .
+   Served In Combat      & .
         & .
         & .
         & .
@@ -433,7 +434,7 @@ tabularnewline
 
 \begin_layout Plain Layout
 
-   ReservesNationalGuard      & .
+   National Guard      & .
         & .
         & .
         & .

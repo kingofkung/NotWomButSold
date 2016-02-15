@@ -52,7 +52,7 @@
 \shortcut idx
 \color #008000
 \end_index
-\paperwidth 8.5in
+\paperwidth 11.5in
 \paperheight 11in
 \secnumdepth 3
 \tocdepth 3
@@ -95,7 +95,7 @@ label{regrlabl}
 
  
 \backslash
-begin{tabular}{*{8}{l}}
+begin{tabular}{*{9}{l}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -107,7 +107,8 @@ hline
 
 \begin_layout Plain Layout
 
-                  & M1 & M2 & M3 & M4 & M5 & M6 & M7   
+                  & Race & Age & Marital & Deployments & Education & Ideology
+ & Served & Reserves   
 \backslash
 tabularnewline
 \end_layout
@@ -115,7 +116,7 @@ tabularnewline
 \begin_layout Plain Layout
 
                    &Estimate   &Estimate   &Estimate   &Estimate   &Estimate
-   &Estimate   &Estimate 
+   &Estimate   &Estimate   &Estimate 
 \backslash
 tabularnewline
 \end_layout
@@ -123,6 +124,7 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &(S.E.)   &(S.E.)   &(S.E.)   &(S.E.)   &(S.E.)   &(S.E.)   &(S.E.) 
+  &(S.E.) 
 \backslash
 tabularnewline
 \end_layout
@@ -143,71 +145,29 @@ hline
 
 \begin_layout Plain Layout
 
-   (Intercept)     &-0.305 &151.052*** &-0.842*** &-2.398** &-1.157*** &-1.651***
- &-1.224*** 
+   (Intercept)     &-0.837*** &151.052*** &-0.842*** &-2.398** &-1.437*** &0.920**
+ &-1.224*** &36.596*** 
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-                 &(0.352)   &(17.475)   &(0.063)   &(0.738)   &(0.155)   &(0.250)
-   &(0.294)  
+                 &(0.066)   &(17.475)   &(0.063)   &(0.738)   &(0.162)   &(0.305)
+   &(0.294)   &(5.726)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   RaceCombBlack    &0.131   & .
+   Asian    &0.531   & .
         & .
         & .
         & .
         & .
         & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &(0.460)   &         &         &         &         &   
-      &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   RaceCombHispanic    &-0.154   & .
-        & .
-        & .
-        & .
-        & .
-        & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &(0.412)   &         &         &         &         &   
-      &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   RaceCombWhite    &-0.531   & .
-        & .
-        & .
-        & .
-        & .
-        & .
-      
+      &0.099 
 \backslash
 tabularnewline
 \end_layout
@@ -215,20 +175,62 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &(0.358)   &         &         &         &         &   
-      &        
+      &         &(0.093)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   BirthYear         & .
+   Black    &0.663*   & .
+        & .
+        & .
+        & .
+        & .
+        & .
+      &0.118 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &(0.303)   &         &         &         &         &   
+      &         &(0.079)  
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   Hispanic    &0.377   & .
+        & .
+        & .
+        & .
+        & .
+        & .
+      &0.046 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &(0.223)   &         &         &         &         &   
+      &         &(0.056)  
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   Age         & .
       &-0.077***   & .
         & .
         & .
         & .
         & .
-      
+      &-0.018*** 
 \backslash
 tabularnewline
 \end_layout
@@ -236,20 +238,20 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &         &( 0.009)   &         &         &         &  
-       &        
+       &         &(0.003)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   MaritalSimpService Member      & .
+   Married a Service Member      & .
         & .
       &0.402   & .
         & .
         & .
         & .
-      
+      &0.113* 
 \backslash
 tabularnewline
 \end_layout
@@ -257,20 +259,20 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &         &         &(0.217)   &         &         &   
-      &        
+      &         &(0.055)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   nDep1-5           & .
+   Deployments 1-5           & .
         & .
         & .
       &1.342   & .
         & .
         & .
-      
+      &0.158 
 \backslash
 tabularnewline
 \end_layout
@@ -278,20 +280,20 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &         &         &         &(0.743)   &         &   
-      &        
+      &         &(0.152)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   nDep6-10          & .
+   Deployments 6-10          & .
         & .
         & .
       &1.662*   & .
         & .
         & .
-      
+      &0.161 
 \backslash
 tabularnewline
 \end_layout
@@ -299,20 +301,20 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &         &         &         &(0.746)   &         &   
-      &        
+      &         &(0.155)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   nDep11-15         & .
+   Deployments 11-15         & .
         & .
         & .
       &1.792*   & .
         & .
         & .
-      
+      &0.110 
 \backslash
 tabularnewline
 \end_layout
@@ -320,20 +322,20 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &         &         &         &(0.767)   &         &   
-      &        
+      &         &(0.164)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   nDep16-20         & .
+   Deployments 16-20         & .
         & .
         & .
       &1.442   & .
         & .
         & .
-      
+      &0.062 
 \backslash
 tabularnewline
 \end_layout
@@ -341,20 +343,20 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &         &         &         &(0.798)   &         &   
-      &        
+      &         &(0.172)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   nDep20+           & .
+   Deployments 20+           & .
         & .
         & .
       &2.219**   & .
         & .
         & .
-      
+      &0.221 
 \backslash
 tabularnewline
 \end_layout
@@ -362,251 +364,62 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &         &         &         &(0.752)   &         &   
-      &        
+      &         &(0.161)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   EdBachelors       & .
+   Education             & .
         & .
         & .
         & .
-      &0.447*   & .
+      &0.201***   & .
         & .
-      
+      &0.022 
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-                 &         &         &         &         &(0.185)   &   
-      &        
+                 &         &         &         &         &(0.048)   &   
+      &         &(0.012)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   EdGED             & .
+   Ideology           & .
         & .
         & .
         & .
-      &0.128   & .
         & .
-      
+      &-0.486***   & .
+      &-0.102*** 
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-                 &         &         &         &         &(0.543)   &   
-      &        
+                 &         &         &         &         &         &(0.085)
+   &         &(0.019)  
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-   EdHSGrad          & .
-        & .
-        & .
-        & .
-      &-0.186   & .
-        & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &         &         &         &         &(0.307)   &   
-      &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   EdPostGrad        & .
-        & .
-        & .
-        & .
-      &0.939***   & .
-        & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &         &         &         &         &(0.214)   &   
-      &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   EdSomeCollege      & .
-        & .
-        & .
-        & .
-      &0.256   & .
-        & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &         &         &         &         &(0.183)   &   
-      &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   EdTechOrTradeSchool      & .
-        & .
-        & .
-        & .
-      &-0.229   & .
-        & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &         &         &         &         &(0.664)   &   
-      &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   IdeoConservative      & .
-        & .
-        & .
-        & .
-        & .
-      &0.609*   & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &         &         &         &         &         &(0.268)
-   &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   IdeoModerate      & .
-        & .
-        & .
-        & .
-        & .
-      &1.185***   & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &         &         &         &         &         &(0.267)
-   &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   IdeoLiberal       & .
-        & .
-        & .
-        & .
-        & .
-      &1.388***   & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &         &         &         &         &         &(0.389)
-   &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   IdeoVery Liberal      & .
-        & .
-        & .
-        & .
-        & .
-      &1.245   & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &         &         &         &         &         &(0.692)
-   &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   IdeoNo Comment      & .
-        & .
-        & .
-        & .
-        & .
-      &0.767**   & .
-      
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-                 &         &         &         &         &         &(0.292)
-   &        
-\backslash
-tabularnewline
-\end_layout
-
-\begin_layout Plain Layout
-
-   ServedInCombatYes      & .
+   ServedInCombat      & .
         & .
         & .
         & .
         & .
         & .
-      &0.428 
+      &0.428 &-0.028 
 \backslash
 tabularnewline
 \end_layout
@@ -614,7 +427,29 @@ tabularnewline
 \begin_layout Plain Layout
 
                  &         &         &         &         &         &   
-      &(0.299)  
+      &(0.299)   &(0.085)  
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+   National Guard      & .
+        & .
+        & .
+        & .
+        & .
+        & .
+        & .
+      &0.138* 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+                 &         &         &         &         &         &   
+      &         &(0.067)  
 \backslash
 tabularnewline
 \end_layout
@@ -628,24 +463,25 @@ hline
 
 \begin_layout Plain Layout
 
- N                 &1264       &1459       &1289       &1460       &1468
-       &1468       &1471       
+ N                 &1264       &1459       &1289       &1460       &1453
+       &1256       &1471       &984       
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
-    Deviance         &1570.720   &1715.846   &1588.553   &1765.615   &1781.409
-   &1772.182   &1812.733   
+    Deviance         &1570.720   &1715.846   &1588.553   &1765.615   &1775.789
+   &1519.170   &1812.733   &186.103   
 \backslash
 tabularnewline
 \end_layout
 
 \begin_layout Plain Layout
 
- $-2LLR (Model chi^2)$ ****       & 8.715****       & 78.853****       & 3.319***
-       & 36.356***       & 28.059**       & 37.286*       & 2.193 
+ $-2LLR (Model chi^2)$ *****       & 8.715*****       & 78.853*****      
+ & 3.319****       & 36.356****       & 17.791***       & 33.827**       & 2.193*
+       & 27.697* 
 \backslash
 tabularnewline
 \end_layout
@@ -673,7 +509,7 @@ hline
 
  
 \backslash
-multicolumn{8}{c}{${*  p}
+multicolumn{9}{c}{${*  p}
 \backslash
 le 0.05$${*
 \backslash

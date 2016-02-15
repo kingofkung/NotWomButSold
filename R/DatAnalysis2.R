@@ -156,7 +156,7 @@ m5f <- update(m4f, .~. - nDep + EdInd, data = datcomb[datcomb$female == 1,])
 summary(m5f)
 
 ## Ideology
-levels(datcomb$Ideology)
+table(datcomb$IdeoInd, datcomb$Ideology)
 m6m <- update(m5m, .~. - EdInd + IdeoInd, data = datcomb[datcomb$female == 0,])
 summary(m6m)
 
@@ -267,13 +267,4 @@ mMaleValsM <- polr(MaleValues~RaceComb + BirthYear + MaritalSimp + nDep + EdInd 
 
 ## Non-Control Independent variables
 ## and continue separating out the men and women
-############################################################
-## MasculineFeminine/FeminineMasculine as numeric indices ##
-############################################################
 
-#############################################################
-## index on how females are considered in American Society ##
-#############################################################
-## These are under Q42 FemalesAre... in the keys
-## Note: The stereotypes are positive and negative
-## Watch for negative codings (FemalesAreWarm is Positive ... for now)

@@ -1,5 +1,5 @@
 ##################################
-## Data Analysis 2: The Streets ##
+## Data Analysis 2:             ##
 ## Created 6/25/2015            ##
 ## A Ben Rogers JOint           ##
 ##################################
@@ -11,6 +11,8 @@
 
 ## Quick note: WHile we can look at the new analysis, any specific comments need to be considered with a grain of salt.
 ##In order to make factor categories less terrible, I removed any / symbols, and replaced them with "or". I can fix this, but won't unless specifically asked. It's a bad idea to keep special characters that closely resemble the escape in reg expressions.
+
+source("Recodes2.R")
 
 library(rockchalk)
 

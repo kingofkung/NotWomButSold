@@ -22,7 +22,7 @@ homdat$BirthYear <- as.numeric(as.character(homdat$BirthYear))
 
 colnames(homdat)
 
-levels(homdat$WhySupportFemaleService)
+## levels(homdat$WhySupportFemaleService)
 homdat$WhySupportFemaleService[homdat$WhySupportFemaleService == ""] <- NA
 
 
@@ -133,7 +133,7 @@ levels(datcomb$ComfortFemales) <- levels(datcomb$ComfortFemales)[c(4,3,1,2)]
 ##Make this a data.frame
 
 datcomb <- as.data.frame(datcomb)
-str(datcomb)
+## str(datcomb)
 
 datcomb[sample(1:nrow(datcomb), size = 5),]
 
@@ -252,9 +252,9 @@ table(datcomb$BossGenderPref, datcomb$BossPrefRec)
 ## Issue to talk with Dr. Haider-Markel about: We have only 8 people saying they'd like a female boss.
 
 ## Look at Q31 AKA the Cohesion Questions
-levels()
+## levels()
 
-table(datcomb$CohesionIntegrationTensions,  )
+table(datcomb$CohesionIntegrationTensions )
 ##CohesionMaleDom
 
 datcomb$CohesionMaleDom
@@ -302,7 +302,7 @@ datcomb$CohSexHarrassRec <-  cohesionRec(datcomb$CohesionSexHarrass)
 levels(datcomb$MaleValues)
 datcomb$MaleValues <- factor(datcomb$MaleValues, levels = c("Strongly agree", "Somewhat agree", "Somewhat disagree", "Strongly disagree"))
 
-datcomb[, c("MaleValues", "female")]
+## datcomb[, c("MaleValues", "female")]
 
 
 ##Write the latest version of the code for Dr. Hader Markel

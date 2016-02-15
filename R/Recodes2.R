@@ -304,9 +304,52 @@ datcomb$MaleValues <- factor(datcomb$MaleValues, levels = c("Strongly agree", "S
 
 ## datcomb[, c("MaleValues", "female")]
 
+#############################################################
+## index on how females are considered in American Society ##
+## These are under Q42 FemalesAre... in the keys
+## Note: The stereotypes are positive and negative
+## Watch for negative codings (FemalesAreWarm is Positive ... for now)
+
+## femalesarecols <- grep("FemalesAre", colnames(datcomb))
+## datcomb[ , femalesarecols]
+
+posaffect <- c("Competent", "Likeable", "Warm", "Independent", "Intelligent")
+posaffectcols <- unlist(lapply(posaffect, function(x) grep(x, colnames(datcomb))))
+
+## colnames(datcomb[,posaffectcols])
+
+negaffect <- c("Emotional", "DifficultCoworkers", "Irritable", "Hostile", "Whiny", "Complaining")
+negaffectcols <- unlist(lapply(negaffect, function(x) grep(x, colnames(datcomb))))
+
+## colnames(datcomb[,negaffectcols])
+
+goodaffectcols <- apply(datcomb[, posaffectcols], 2 , FUN = function(x) as.numeric(substr(as.character(x), 1,1)))
+
+badaffectcols <- apply(datcomb[, negaffectcols], 2 , FUN = function(x) as.numeric(substr(as.character(x), 1,1)))
+
+
+datcomb$affectIndex <- rowSums(goodaffectcols) -  rowSums(badaffectcols)
+
+## hist(datcomb$affectIndex, breaks = length(unique(datcomb$affectIndex)))
+
+############################################################
+## MasculineFeminine/FeminineMasculine as numeric indices ##
+############################################################
+
+table(datcomb$FeminineMasculine, datcomb$female)
+
+datcomb$FMindex <- as.numeric(substr(datcomb$FeminineMasculine, 1,2))
+table(datcomb$FeminineMasculine, datcomb$FMindex)
+
+
+table(datcomb$MasculineFeminine, datcomb$female)
+
+datcomb$MFindex <- as.numeric(substr(datcomb$MasculineFeminine, 1,2))
+table(datcomb$MasculineFeminine, datcomb$MFindex)
+
 
 ##Write the latest version of the code for Dr. Hader Markel
 ############################################################################################################################################
-## library(foreign)                                                                                                                       ##
-## write.dta(datcomb, file = "/Users/bjr/Dropbox/Women in Special Forces Project Folder/Ben Rogers & Carolina Costa Candal/CombData.dta") ##
+library(foreign)                                                                                                                       ##
+write.dta(datcomb, file = "/Users/bjr/Dropbox/Women in Special Forces Project Folder/Ben Rogers & Carolina Costa Candal/CombData.dta") ##
 ############################################################################################################################################
